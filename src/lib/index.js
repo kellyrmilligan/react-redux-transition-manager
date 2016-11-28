@@ -1,16 +1,12 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import routeResolver from 'route-resolver'
-import toggleIsAppLoading from 'actions/toggle-is-app-loading'
+import reactRouterFetch from 'react-router-fetch'
+import { toggleAppFetching, getFetching } from '../redux/is-app-fetching'
 
 const TransitionManager = class TransitionManager extends Component {
 
   static contextTypes = {
     store: PropTypes.object.isRequired
-  }
-
-  shouldComponentUpdate (nextProps) {
-    return !nextProps.isAppLoading
   }
 
   componentWillReceiveProps (nextProps) {
@@ -23,10 +19,15 @@ const TransitionManager = class TransitionManager extends Component {
     this.fetchRoutes(nextProps)
   }
 
+  shouldComponentUpdate (nextProps) {
+    return !nextProps.isAppLoading.loading
+  }
+
   fetchRoutes (nextProps) {
-    this.props.dispatch(toggleIsAppLoading())
-    // todo, how can we add a hook to a loading indicator that's generic?
-    routeResolver({
+    this.props.dispatch(toggleAppFetching())
+    // pass error compnent as a prop to show if transition has an error? yiiiisssss!!!
+    // pass loading component? how can do this and keep the children from previous route?
+    reactRouterFetch({
       components: nextProps.routes.map((route) => route.component),
       params: nextProps.params,
       location: nextProps.location
@@ -35,10 +36,10 @@ const TransitionManager = class TransitionManager extends Component {
       getState: this.context.store.getState
     })
       .then(() => {
-        this.props.dispatch(toggleIsAppLoading())
+        this.props.dispatch(toggleAppFetching())
       },
-      (err) => {
-        this.props.dispatch(toggleIsAppLoading(err))
+      () => {
+        this.props.dispatch(toggleAppFetching())
       })
   }
 
@@ -54,7 +55,7 @@ const TransitionManager = class TransitionManager extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    isAppLoading: state.isAppLoading,
+    isAppFetching: getFetching(state),
     location: ownProps.location,
     params: ownProps.params,
     routes: ownProps.routes
