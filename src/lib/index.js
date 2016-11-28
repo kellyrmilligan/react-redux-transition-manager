@@ -19,12 +19,13 @@ const TransitionManager = class TransitionManager extends Component {
     this.fetchRoutes(nextProps)
   }
 
-  shouldComponentUpdate (nextProps) {
-    return !nextProps.isAppLoading.loading
+  shouldComponentUpdate (nextProps, nextState) {
+    return !nextProps.isAppFetching.isAppFetching
   }
 
   fetchRoutes (nextProps) {
-    this.props.dispatch(toggleAppFetching())
+    const { dispatch } = this.props
+    dispatch(toggleAppFetching())
     // pass error compnent as a prop to show if transition has an error? yiiiisssss!!!
     // pass loading component? how can do this and keep the children from previous route?
     reactRouterFetch({
@@ -32,14 +33,14 @@ const TransitionManager = class TransitionManager extends Component {
       params: nextProps.params,
       location: nextProps.location
     }, false, {
-      dispatch: this.props.dispatch,
+      dispatch,
       getState: this.context.store.getState
     })
       .then(() => {
-        this.props.dispatch(toggleAppFetching())
+        dispatch(toggleAppFetching())
       },
       () => {
-        this.props.dispatch(toggleAppFetching())
+        dispatch(toggleAppFetching())
       })
   }
 

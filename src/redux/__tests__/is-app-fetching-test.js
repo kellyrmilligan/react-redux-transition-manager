@@ -25,14 +25,14 @@ describe('app fetching reducer', () => {
 })
 
 describe('select fetching', () => {
-  let state = { isAppFetching: { isAppFetching: false }}
+  let state = { isAppFetching: { isAppFetching: false } }
   it('will get the value of fetching from the state', () => {
     expect(getFetching(state)).toEqual({
       isAppFetching: false
     })
   })
   it('will get the the other value when state changes', () => {
-    //simulate what combine reducers does
+    // simulate what combine reducers does
     state = {
       isAppFetching: isAppFetching(undefined, {
         type: TOGGLE_IS_APP_FETCHING
