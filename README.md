@@ -17,6 +17,7 @@ const App = (props) =>
   <TransitionManager {...props}
     onFetchStart={() => console.log('fetch started')}
     onFetchEnd={() => console.log('fetch end')}
+    onError={(err) => console.log('an error happened while fetching data for routes ', err)}
     FetchingIndicator={<div className"Fetching">Loading awesomeness...</div>}
     ErrorIndicator={<div className="OOPS">Something went wrong</div>}
   >
