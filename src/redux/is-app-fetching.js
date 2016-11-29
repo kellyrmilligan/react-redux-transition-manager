@@ -4,18 +4,29 @@ import { createSelector } from 'reselect'
 export const TOGGLE_IS_APP_FETCHING = 'TOGGLE_IS_APP_FETCHING'
 
 // action
-export function toggleAppFetching () {
+export function toggleAppFetching (error) {
   return {
-    type: TOGGLE_IS_APP_FETCHING
+    type: TOGGLE_IS_APP_FETCHING,
+    payload: error || null,
+    error: !!error
   }
 }
 
+const intitialState = {
+  isAppFetching: false,
+  payload: null,
+  error: false
+}
+
 // reducer
-function isAppFetchingReducer (state = { isAppFetching: false }, action) {
+function isAppFetchingReducer (state = intitialState, action) {
   switch (action.type) {
     case TOGGLE_IS_APP_FETCHING:
       return {
-        isAppFetching: !state.isAppFetching
+        ...intitialState,
+        isAppFetching: !state.isAppFetching,
+        payload: action.payload || null,
+        error: action.error || false
       }
     default:
       return state
