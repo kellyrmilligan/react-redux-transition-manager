@@ -4,9 +4,9 @@ import reactRouterFetch from 'react-router-fetch'
 import { toggleAppFetching, getFetching } from '../redux/is-app-fetching'
 import ReactDOM, { unstable_renderSubtreeIntoContainer as renderSubtreeIntoContainer } from 'react-dom'
 
-const FetchingIndicatorWrapper = ({ Indicator, shouldShow }) => (
-  <div style={{ display: shouldShow ? 'block' : 'none' }}>
-    {React.cloneElement(Indicator, { shouldShow })}
+const FetchingIndicatorWrapper = ({ Indicator, shouldShow, ...rest }) => (
+  <div>
+    {shouldShow && React.cloneElement(Indicator, { shouldShow, ...rest })}
   </div>
 )
 
@@ -53,10 +53,10 @@ const TransitionManager = class TransitionManager extends Component {
     const { FetchingIndicator } = this.props
     if (shoudShow) {
       document.body.classList.add('TransitionManager-body-is-fetching')
-      this.portal = renderSubtreeIntoContainer(this, <FetchingIndicatorWrapper Indicator={FetchingIndicator} shouldShow={shoudShow} />, this.node)
+      this.portal = renderSubtreeIntoContainer(this, <FetchingIndicatorWrapper Indicator={FetchingIndicator} shouldShow={shoudShow} {...this.props} />, this.node)
     } else {
       document.body.classList.remove('TransitionManager-body-is-fetching')
-      this.portal = renderSubtreeIntoContainer(this, <FetchingIndicatorWrapper Indicator={FetchingIndicator} shouldShow={shoudShow} />, this.node)
+      this.portal = renderSubtreeIntoContainer(this, <FetchingIndicatorWrapper Indicator={FetchingIndicator} shouldShow={shoudShow} {...this.props} />, this.node)
     }
   }
 

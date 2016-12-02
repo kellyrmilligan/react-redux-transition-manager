@@ -10,10 +10,11 @@
     "clean": "rimraf ./lib",
     "dev": "npm-run-all clean standard --parallel babel:watch standard:watch",
     "prepublish": "npm run build",
-    "standard": "standard --fix",
+    "standard": "standard --verbose | snazzy",
     "standard:watch": "onchange 'src/**/*.js' -- npm run standard",
     "test": "cross-env NODE_ENV=test standard && jest",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "test:coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "author": "Kelly Milligan",
   "license": "ISC",
@@ -80,6 +81,7 @@
     "redux": "^3.6.0",
     "reselect": "^2.5.4",
     "rimraf": "^2.5.4",
+    "snazzy": "^5.0.0",
     "source-map-support": "^0.4.0",
     "standard": "^8.5.0"
   }

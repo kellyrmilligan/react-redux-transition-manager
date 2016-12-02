@@ -113,9 +113,7 @@ export default connect(
 ```
 
 ### Static method params
-The reactRouterFetch module is used to call the static methods on the matched route handlers. it will call the fetch method with the react router params(path params), the query(`?id=whatever`), and the redux `dispatch` and `getState` methods.
-
-
+The [reactRouterFetch](https://github.com/kellyrmilligan/react-router-fetch) module is used to call the static methods on the matched route handlers. it will call the fetch method with the react router params(path params), the query(`?id=whatever`), and the redux `dispatch` and `getState` methods.
 
 ## Props
 `onFetchStart: PropTypes.func` - This is a function that will be called when fetching starts.
@@ -128,7 +126,7 @@ The reactRouterFetch module is used to call the static methods on the matched ro
 
 `ErrorIndicator: PropTypes.element` - This will be rendered instead of `props.children` when an error occurs.
 
-## TODO:
-- send props to loading Page
-- render the loading indicator or not vs inline styles?
-- error passthrough if the user wants to handle the error somewhere else in the handler instead of globally
+## Still to do:
+- right now this will only work in a server rendered app. the initial fetch will not happen. either a separate version of this module or an enhancement to this module will be forthcoming to enable this.
+- a stand alone version that does not use redux.
+- if your API returns an error that you want to handle more specifically, you need to do it in your error Indicator and access your redux store. While this is serviceable, I want to provided a `pass-through`, where if an error happens on a certain route, you will be able to handle the error in the route handler instead if you want to.
