@@ -128,5 +128,5 @@ The [reactRouterFetch](https://github.com/kellyrmilligan/react-router-fetch) mod
 
 ## Still to do:
 - right now this will only work in a server rendered app. the initial fetch will not happen. either a separate version of this module or an enhancement to this module will be forthcoming to enable this.
-- a stand alone version that does not use redux.
+- a stand alone version that does not use redux, and just uses `setState`
 - if your API returns an error that you want to handle more specifically, you need to do it in your error Indicator and access your redux store. While this is serviceable, I want to provided a `pass-through`, where if an error happens on a certain route, you will be able to handle the error in the route handler instead if you want to.
