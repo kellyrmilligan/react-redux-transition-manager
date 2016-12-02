@@ -2,7 +2,7 @@ react-transition-manager
 =====================
 Higher order component to enable loading states between route transitions and fetch data for the new route
 
-[![Dependency Status](https://david-dm.org/kellyrmilligan/react-router-fetch.svg)](https://david-dm.org/kellyrmilligan/react-router-fetch)
+[![peerDependencies Status](https://david-dm.org/kellyrmilligan/react-redux-transition-manager/peer-status.svg)](https://david-dm.org/kellyrmilligan/react-redux-transition-manager?type=peer)
 [![Build Status](https://travis-ci.org/kellyrmilligan/react-redux-transition-manager.svg?branch=master)](https://travis-ci.org/kellyrmilligan/react-redux-transition-manager)
 [![Coverage Status](https://coveralls.io/repos/github/kellyrmilligan/react-redux-transition-manager/badge.svg?branch=master)](https://coveralls.io/github/kellyrmilligan/react-redux-transition-manager?branch=master)
 
