@@ -1,4 +1,4 @@
-react-transition-manager
+react-redux-transition-manager
 =====================
 Higher order component to enable loading states between route transitions and fetch data for the new route
 
@@ -130,7 +130,10 @@ The [reactRouterFetch](https://github.com/kellyrmilligan/react-router-fetch) mod
 
 `ErrorIndicator: PropTypes.element` - This will be rendered instead of `props.children` when an error occurs.
 
+`fetchInitial: PropTypes.bool` - This is for using this in client side apps only, this will initiate a fetch of the route right away, since the data wasn't loaded from the server.
+
+`SplashScreen: PropTypes.element` - This is the element to be shown for the initial page load. your loading indicator may be enough, so this is optional
+
 ## Still to do:
-- right now this will only work in a server rendered app. the initial fetch will not happen. either a separate version of this module or an enhancement to this module will be forthcoming to enable this.
 - a stand alone version that does not use redux, and just uses `setState`
 - if your API returns an error that you want to handle more specifically, you need to do it in your error Indicator and access your redux store. While this is serviceable, I want to provided a `pass-through`, where if an error happens on a certain route, you will be able to handle the error in the route handler instead if you want to.

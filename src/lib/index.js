@@ -20,12 +20,20 @@ const TransitionManager = class TransitionManager extends Component {
     onFetchStart: PropTypes.func,
     onFetchEnd: PropTypes.func,
     onError: PropTypes.func,
+    fetchInitial: PropTypes.bool,
     FetchingIndicator: PropTypes.element,
-    ErrorIndicator: PropTypes.element
+    ErrorIndicator: PropTypes.element,
+    SplashScreen: PropTypes.element
   }
 
   state = {
     isAppFetching: false
+  }
+
+  constructor (props, context) {
+    super(props, context)
+    const { fetchInitial } = props
+    if (fetchInitial) this.fetchRoutes()
   }
 
   componentDidMount () {
@@ -49,6 +57,15 @@ const TransitionManager = class TransitionManager extends Component {
     return !nextState.isAppFetching
   }
 
+  componentWillUnmount () {
+    if (this.node) {
+      ReactDOM.unmountComponentAtNode(this.node)
+      document.body.removeChild(this.node)
+    }
+    this.portal = null
+    this.node = null
+  }
+
   renderLoading (shoudShow) {
     const { FetchingIndicator } = this.props
     if (shoudShow) {
@@ -58,15 +75,6 @@ const TransitionManager = class TransitionManager extends Component {
       document.body.classList.remove('TransitionManager-body-is-fetching')
       this.portal = renderSubtreeIntoContainer(this, <FetchingIndicatorWrapper Indicator={FetchingIndicator} shouldShow={shoudShow} {...this.props} />, this.node)
     }
-  }
-
-  componentWillUnmount () {
-    if (this.node) {
-      ReactDOM.unmountComponentAtNode(this.node)
-      document.body.removeChild(this.node)
-    }
-    this.portal = null
-    this.node = null
   }
 
   fetchRoutes (nextProps) {
@@ -106,11 +114,18 @@ const TransitionManager = class TransitionManager extends Component {
   }
 
   render () {
-    const { ErrorIndicator, isAppFetching } = this.props
+    const { ErrorIndicator, isAppFetching, SplashScreen, fetchInitial } = this.props
     if (isAppFetching.error) {
       return (
         <div>
           {React.cloneElement(ErrorIndicator, {...this.props})}
+        </div>
+      )
+    }
+    if (fetchInitial) {
+      return (
+        <div>
+          {SplashScreen}
         </div>
       )
     }
