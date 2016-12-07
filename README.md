@@ -139,4 +139,5 @@ The [reactRouterFetch](https://github.com/kellyrmilligan/react-router-fetch) mod
 `showIndicatorOnInitial` - This prop will control whether or not you want to also show your loading indicator on the initial load. Depending on your ui, you may want to have a splash screen with a loading bar at the top of the page or something.
 
 ## Still to do:
+- add more tests for the actual component. sorry the coverage badge is so bad, i'm still learning enzyme. all the reducers are 100% covered
 - if your API returns an error that you want to handle more specifically, you need to do it in your error Indicator and access your redux store. While this is serviceable, I want to provided a `pass-through`, where if an error happens on a certain route, you will be able to handle the error in the route handler instead if you want to.
