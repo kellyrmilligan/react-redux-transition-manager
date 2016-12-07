@@ -132,10 +132,11 @@ The [reactRouterFetch](https://github.com/kellyrmilligan/react-router-fetch) mod
 
 `ErrorIndicator: PropTypes.element` - This will be rendered instead of `props.children` when an error occurs.
 
-`fetchInitial: PropTypes.bool` - This is for using this in client side apps only, this will initiate a fetch of the route right away, since the data wasn't loaded from the server.
-
 `SplashScreen: PropTypes.element` - This is the element to be shown for the initial page load. your loading indicator may be enough, so this is optional
 
+`fetchInitial: PropTypes.bool` - This is for using this in client side apps only, this will initiate a fetch of the route right away, since the data wasn't loaded from the server.
+
+`showIndicatorOnInitial` - This prop will control whether or not you want to also show your loading indicator on the initial load. Depending on your ui, you may want to have a splash screen with a loading bar at the top of the page or something.
+
 ## Still to do:
-- a stand alone version that does not use redux, and just uses `setState`
 - if your API returns an error that you want to handle more specifically, you need to do it in your error Indicator and access your redux store. While this is serviceable, I want to provided a `pass-through`, where if an error happens on a certain route, you will be able to handle the error in the route handler instead if you want to.
