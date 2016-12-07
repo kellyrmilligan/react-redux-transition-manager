@@ -1,6 +1,6 @@
 {
   "name": "react-redux-transition-manager",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Higher order component to enable loading states between route transitions",
   "main": "lib/index.js",
   "scripts": {
