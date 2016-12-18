@@ -6,6 +6,8 @@ Higher order component to enable loading states between route transitions and fe
 [![Build Status](https://travis-ci.org/kellyrmilligan/react-redux-transition-manager.svg?branch=master)](https://travis-ci.org/kellyrmilligan/react-redux-transition-manager)
 [![Coverage Status](https://coveralls.io/repos/github/kellyrmilligan/react-redux-transition-manager/badge.svg?branch=master)](https://coveralls.io/github/kellyrmilligan/react-redux-transition-manager?branch=master)
 
+![transiton-manager-example](https://cloud.githubusercontent.com/assets/2642088/20978729/9466bed2-bc6f-11e6-838a-a13d0b6a6509.gif)
+
 ## Why?
 There is a lot of boilerplate involved when using react router and fetching the necessary data when transitioning from route to route. This is an attempt to simplify this process with 2 primary features:
 
@@ -130,10 +132,12 @@ The [reactRouterFetch](https://github.com/kellyrmilligan/react-router-fetch) mod
 
 `ErrorIndicator: PropTypes.element` - This will be rendered instead of `props.children` when an error occurs.
 
-`fetchInitial: PropTypes.bool` - This is for using this in client side apps only, this will initiate a fetch of the route right away, since the data wasn't loaded from the server.
-
 `SplashScreen: PropTypes.element` - This is the element to be shown for the initial page load. your loading indicator may be enough, so this is optional
 
+`fetchInitial: PropTypes.bool` - This is for using this in client side apps only, this will initiate a fetch of the route right away, since the data wasn't loaded from the server.
+
+`showIndicatorOnInitial` - This prop will control whether or not you want to also show your loading indicator on the initial load. Depending on your ui, you may want to have a splash screen with a loading bar at the top of the page or something.
+
 ## Still to do:
-- a stand alone version that does not use redux, and just uses `setState`
+- add more tests for the actual component. sorry the coverage badge is so bad, i'm still learning enzyme. all the reducers are 100% covered
 - if your API returns an error that you want to handle more specifically, you need to do it in your error Indicator and access your redux store. While this is serviceable, I want to provided a `pass-through`, where if an error happens on a certain route, you will be able to handle the error in the route handler instead if you want to.

@@ -21,6 +21,7 @@ const TransitionManager = class TransitionManager extends Component {
     onFetchEnd: PropTypes.func,
     onError: PropTypes.func,
     fetchInitial: PropTypes.bool,
+    showIndicatorOnInitial: PropTypes.bool,
     FetchingIndicator: PropTypes.element,
     ErrorIndicator: PropTypes.element,
     SplashScreen: PropTypes.element
@@ -30,15 +31,16 @@ const TransitionManager = class TransitionManager extends Component {
     isAppFetching: false
   }
 
-  constructor (props, context) {
-    super(props, context)
-    const { fetchInitial } = props
-    if (fetchInitial) this.fetchRoutes()
+  componentWillMount () {
+    const { fetchInitial } = this.props
+    if (fetchInitial) this.fetchRoutes(this.props)
   }
 
   componentDidMount () {
+    const { fetchInitial, showIndicatorOnInitial } = this.props
     this.node = document.createElement('div')
     document.body.appendChild(this.node)
+    if (this.state.isAppFetching && fetchInitial && showIndicatorOnInitial) this.renderLoading(true)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -122,7 +124,7 @@ const TransitionManager = class TransitionManager extends Component {
         </div>
       )
     }
-    if (fetchInitial) {
+    if (fetchInitial && isAppFetching && SplashScreen) {
       return (
         <div>
           {SplashScreen}
