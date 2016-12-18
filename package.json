@@ -2,7 +2,12 @@
   "name": "react-redux-transition-manager",
   "version": "1.2.0",
   "description": "Higher order component to enable loading states between route transitions",
+  "keywords": "react, redux, react-router, transition, page, route",
   "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kellyrmilligan/react-redux-transition-manager"
+  },
   "scripts": {
     "build": "npm-run-all clean standard babel",
     "babel": "babel src -d . -D -s",
