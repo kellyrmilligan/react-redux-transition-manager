@@ -72,10 +72,10 @@ const TransitionManager = class TransitionManager extends Component {
     const { FetchingIndicator } = this.props
     if (shoudShow) {
       document.body.classList.add('TransitionManager-body-is-fetching')
-      this.portal = renderSubtreeIntoContainer(this, <FetchingIndicatorWrapper Indicator={FetchingIndicator} shouldShow={shoudShow} {...this.props} />, this.node)
+      if (FetchingIndicator) this.portal = renderSubtreeIntoContainer(this, <FetchingIndicatorWrapper Indicator={FetchingIndicator} shouldShow={shoudShow} {...this.props} />, this.node)
     } else {
       document.body.classList.remove('TransitionManager-body-is-fetching')
-      this.portal = renderSubtreeIntoContainer(this, <FetchingIndicatorWrapper Indicator={FetchingIndicator} shouldShow={shoudShow} {...this.props} />, this.node)
+      if (FetchingIndicator) this.portal = renderSubtreeIntoContainer(this, <FetchingIndicatorWrapper Indicator={FetchingIndicator} shouldShow={shoudShow} {...this.props} />, this.node)
     }
   }
 
