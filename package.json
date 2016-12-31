@@ -78,7 +78,7 @@
     "enzyme": "^2.6.0",
     "jest": "^17.0.3",
     "nodemon": "^1.9.0",
-    "npm-run-all": "^3.1.2",
+    "npm-run-all": "^4.0.0",
     "onchange": "^3.0.2",
     "react": "^15.3.0",
     "react-addons-test-utils": "^15.4.1",
